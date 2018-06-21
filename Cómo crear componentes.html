@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Curso Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+
+        <form v-on:submit.prevent="submit" action="" method="get">
+        <h2>Cuales son tus peliculas favoritas?</h2>
+
+        <template v-for="peliculas in peliculas">
+          <pelicula v-bind:peliculas="peliculas" v-on:checked="selectPelicula"></pelicula>
+        </template>
+
+        <button type="submit">Enviar</button>
+      </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+
+    Vue.component('pelicula', {
+      props:['peliculas'],
+      methods:{
+        onchange: function (ev) {
+          this.$emit('checked', this.peliculas.value, ev.target.checked)
+        }
+      },
+      template:`
+      <div>
+      <input type="checkbox" v-bind:id="peliculas.value" v-bind:value="peliculas.value" @change="onchange">
+      <label v-bind:for="peliculas.value">{{peliculas.nombre}}</label>
+      </div>
+      `
+    })
+
+      let app = new Vue({
+        el: '#app',
+        data: {
+          nombre: "mario",
+          peliculas: [
+            { nombre:'Avengers',
+              value:'avengers' },
+
+            { nombre:'Alien',
+              value:'alien' },
+
+            { nombre:'Mundo Jurasico',
+              value:'mundojurasico' },
+
+            { nombre:'Los Increibles 2',
+              value:'losincreibles2' }
+          ],
+          peliculaSelecionada:[]
+        },
+        methods: {
+          submit: function(){
+            console.log('ejecucion del submit')
+            console.log(this.peliculaSelecionada)
+          },
+          selectPelicula: function (pelicula, checked) {
+            if (checked) {
+              this.peliculaSelecionada.push(pelicula)
+            } else {
+              let index = this.peliculaSelecionada.indexOf(pelicula)
+              this.peliculaSelecionada.splice( index, 1 )
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

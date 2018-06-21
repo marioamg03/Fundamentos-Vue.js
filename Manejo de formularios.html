@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Curso Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" name="nombre" placeholder="ingresa tu nombre" v-model="nombre">
+      <p>Tu nombre en mayusculas es: {{nombre | uppercase}}</p>
+
+      <form v-on:submit.prevent="submit" action="" method="get">
+        <h2>Cuales son tus peliculas favoritas?</h2>
+        <input v-model="cursos" type="checkbox" id="avengers" value="avengers">
+        <label for="avengers">Avengers</label>
+
+        <input v-model="cursos" type="checkbox" id="alien" value="alien">
+        <label for="alien">Alien</label>
+
+        <input v-model="cursos" type="checkbox" id="mundojurasico" value="mundojurasico">
+        <label for="mundojurasico">Mundo Jurasico</label>
+
+        <input v-model="cursos" type="checkbox" id="losincreibles2" value="losincreibles2">
+        <label for="losincreibles2">Los Increibles 2</label>
+
+        <button type="submit">Enviar</button>
+      </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+      let app = new Vue({
+        el: '#app',
+        data: {
+          nombre: "mario",
+          cursos: []
+        },
+        filters: {
+          // filtro mayusculas
+          uppercase: function (str){
+            return str.toUpperCase()
+          }
+        },
+        methods: {
+          submit: function(){
+            console.log('ejecucion del submit')
+            console.log(this.cursos)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

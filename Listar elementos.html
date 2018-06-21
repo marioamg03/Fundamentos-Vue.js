@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Curso Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+
+        <form v-on:submit.prevent="submit" action="" method="get">
+        <h2>Cuales son tus peliculas favoritas?</h2>
+
+        <template v-for="peliculas in peliculas">
+          <input v-model="peliculaSelecionada" type="checkbox" v-bind:id="peliculas.value" v-bind:value="peliculas.value">
+          <label v-bind:for="peliculas.value">{{peliculas.nombre}}</label>
+        </template>
+
+        <button type="submit">Enviar</button>
+      </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+      let app = new Vue({
+        el: '#app',
+        data: {
+          nombre: "mario",
+          peliculas: [
+            { nombre:'Avengers',
+              value:'avengers' },
+
+            { nombre:'Alien',
+              value:'alien' },
+
+            { nombre:'Mundo Jurasico',
+              value:'mundojurasico' },
+
+            { nombre:'Los Increibles 2',
+              value:'losincreibles2' }
+          ],
+          peliculaSelecionada:[]
+        },
+        methods: {
+          submit: function(){
+            console.log('ejecucion del submit')
+            console.log(this.peliculaSelecionada)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

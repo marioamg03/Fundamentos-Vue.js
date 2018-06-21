@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Curso Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-show se recomienda utilizar cuando se requiere mostrar o ocultar deacuerdo a la interaccion del usuario-->
+      <div v-show="!mostrar">
+        <h1>Este es mi titulo</h1>
+        <h2>Este es mi subtitulo</h2>
+      </div>
+      <!-- v-if se recomienda utiliza al cargar la paginaal iniciar -->
+      <a v-if="mostrar" v-bind:href="url">ir a {{pagina}}</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+      let app = new Vue({
+        el: '#app',
+        data: {
+          url: "https://www.google.com/",
+          pagina: 'Google',
+          mostrar: true
+        }
+      })
+    </script>
+  </body>
+</html>

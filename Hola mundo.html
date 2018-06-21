@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Curso Vue.js</title>
+  </head>
+  <body>
+    <div id="app"> Hola {{ nombre }}
+      <a v-bind:href="url">ir a {{pagina}}</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+      let app = new Vue({
+        el: '#app',
+        data: {
+          nombre: 'Mario',
+          url: "https://www.google.com/",
+          pagina: 'Google'
+        }
+      })
+    </script>
+  </body>
+</html>
